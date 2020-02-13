@@ -6,18 +6,17 @@ public class Lexi {
     public static void main(String[] args) {
         SwingWindow swingWin = new SwingWindow("Lexi");
         Glyph character = new Character('c');
-        //Glyph recTest = new Rectangle(0,0,10,10);
-        //Glyph row = new CompositeRow();
-//        try {
-//            //row.insert(character,0);
-//            //row.insert(recTest, 1);
-//        } catch (PenguineException e) {
-//            e.printStackTrace();
-//        }
-
-        // should set contents only be called once with the root glyph?
-        // yes I think so, the whole document is technically one row or col, set contents to it
-        // and then its draw method will recursively draw all the children.
-        swingWin.setContents(character);
+        Glyph recTest = new Rectangle(10,10);
+        Glyph col = new Column();
+        Glyph row = new Row();
+        try {
+            row.insert(character,0);
+            row.insert(recTest, 1);
+            col.insert(row,0);
+            col.insert(new Rectangle(20,20), 1);
+        } catch (PenguineException e) {
+            e.printStackTrace();
+        }
+        swingWin.setContents(col);
     }
 }

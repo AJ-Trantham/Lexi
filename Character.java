@@ -5,8 +5,6 @@ import java.awt.*;
  */
 public class Character extends Glyph {
     private char c;
-    private Glyph parent;
-    private Point location;
 
     public Character(char c) {
         this.c = c;
@@ -14,23 +12,12 @@ public class Character extends Glyph {
 
     @Override
     void draw(Window window) {
-        window.drawCharacter(c,0,0);
+        window.drawCharacter(c, super.getBounds(this).getX(), super.getBounds(this).getY());
     }
 
     @Override
+    // if every Glyph object has a Bounds object then this can be implemented in the parent class
     boolean intersects(Point point) {
-
         return false;
     }
-
-    @Override
-    Rect getBounds(Glyph glyph) {
-        return null;
-    }
-
-    @Override
-    Glyph getParent() {
-        return parent;
-    }
-
 }
