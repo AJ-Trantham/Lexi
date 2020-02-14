@@ -20,4 +20,10 @@ public class Character extends Glyph {
     boolean intersects(Point point) {
         return false;
     }
+
+    @Override
+    public void setSize(Window window) {
+        bounds.setWidth(window.charWidth(c));
+        bounds.setHeight(window.charHeight(c));
+    }
 }

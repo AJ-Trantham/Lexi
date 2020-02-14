@@ -14,7 +14,12 @@ public class Rectangle extends Glyph {
     }
 
     @Override
-    void draw(Window window) {
+    void setSize(Window window) throws PenguineException {
+
+    }
+
+    @Override
+    public void draw(Window window) {
         window.drawRectangle(this.getBounds(this).getX(), this.getBounds(this).getY(), width, height);
     }
 }

@@ -3,9 +3,20 @@
  Update: this class holds the Formatter object and inherits from composite glyph
  */
 public abstract class Composition extends CompositeGlyph{
-    private Formatter formatter;
+    protected Formatter formatter;
 
-    public Composition() {
-        this.formatter = new SimpleCompositor();
+//    public Composition( Window window) {
+//        this.formatter = new SimpleCompositor(window);
+//    }
+//
+//    public Composition() {
+//        // this has got to be an issue
+//    }
+
+    public void compose() {
+        formatter.format();
     }
+
+    // this could have an abstract method that the rows and cols override that updates the height for formatting
+    abstract Cursor adjustCursor(Cursor curs, Glyph child);
 }

@@ -16,12 +16,6 @@ public class CompositeGlyph extends Glyph {
             g.draw(window);
         }
     }
-    @Override
-    void insert(Glyph glyph, int position) throws PenguineException {
-        children.add(position, glyph);
-        // will need to reformat here
-        // get root and pass it to reformat? k
-    }
 
     @Override
     void remove(Glyph glyph) throws PenguineException {
@@ -31,5 +25,9 @@ public class CompositeGlyph extends Glyph {
     @Override
     Glyph getChild(int position) throws PenguineException {
         return children.get(position);
+    }
+
+    public ArrayList<Glyph> getChildren() {
+        return children;
     }
 }

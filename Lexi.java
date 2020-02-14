@@ -7,16 +7,27 @@ public class Lexi {
         SwingWindow swingWin = new SwingWindow("Lexi");
         Glyph character = new Character('c');
         Glyph recTest = new Rectangle(10,10);
-        Glyph col = new Column();
-        Glyph row = new Row();
+        Glyph col = new Column(swingWin);
+        CompositeGlyph row = new Row(swingWin);
         try {
-            row.insert(character,0);
-            row.insert(recTest, 1);
-            col.insert(row,0);
-            col.insert(new Rectangle(20,20), 1);
+            col.insert(character,0);
+            //col.insert(new Character('c'), 1);
+            //col.insert(new Character('c'), 2);
+            //col.insert(new Character('c'), 3);
+            row.insert(new Character('i'),0);
+            row.insert(new Character('e'), 1);
+            row.insert(new Rectangle(10, 20), 2);
+            //row.insert(new Character('c'), 2);
+            //row.insert(new Character('c'), 3);
+            //col.insert(row,0);
+            col.insert(row,1);
+            col.insert(new Rectangle(20,20), 2);
         } catch (PenguineException e) {
             e.printStackTrace();
         }
+        //Composition comp = new Composition(swingWin);
+        //comp.formatter.setComposition(row);
+        //comp.compose();
         swingWin.setContents(col);
     }
 }
