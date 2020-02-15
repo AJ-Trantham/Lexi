@@ -10,7 +10,7 @@ public class Column extends Composition {
     @Override
     Cursor adjustCursor(Cursor curs, Glyph child) {
         //
-        curs.updateHeight(curs.getHeight() + child.bounds.getHeight());
+        curs.updateHeight(curs.getY() + child.bounds.getHeight());
         System.out.println("Curs Height: " + curs.getHeight());
         //curs.updateHeight(this.bounds.getHeight());
         curs.updateY(curs.getHeight());
