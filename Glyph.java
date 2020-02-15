@@ -49,10 +49,13 @@ abstract class Glyph {
         return parent;
     }
 
-    /** Traverse to root Glyph witch is the Document column, used for reformatting */
-    Glyph getRootGlyph(Glyph glyph) {
+    // this lets mw avoid casting but is basically the same thing
+    Composition getParentComposition() { return (Composition) parent; }
+
+    /** Traverse to root Glyph which is the Document column, used for reformatting */
+    protected Composition getRootGlyph(Composition glyph) {
         while(glyph.getParent() != null) {
-            glyph = glyph.getParent();
+            glyph = glyph.getParentComposition();
         }
         return glyph;
     }

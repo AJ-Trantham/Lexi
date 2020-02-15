@@ -11,6 +11,7 @@ public class Lexi {
         CompositeGlyph row = new Row(swingWin);
         try {
             col.insert(character,0);
+            //col.insert(new Row(swingWin), 1);
             //col.insert(new Character('c'), 1);
             //col.insert(new Character('c'), 2);
             //col.insert(new Character('c'), 3);
@@ -22,6 +23,10 @@ public class Lexi {
             //col.insert(row,0);
             col.insert(row,1);
             col.insert(new Rectangle(20,20), 2);
+            Row testRow2 = new Row(swingWin);
+            testRow2.insert(new Character('a'), 0);
+            testRow2.insert(new Character('b'), 1);
+            col.insert(new Character('s'), 3);
         } catch (PenguineException e) {
             e.printStackTrace();
         }

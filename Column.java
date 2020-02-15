@@ -29,8 +29,8 @@ public class Column extends Composition {
         glyph.parent = this;
         children.add(position, glyph);
         // but probbaly need to send the root parent here to start reformatting
-        // this.getRootGlyph(this); // I am not sure about this since the parent is a Glyph but I need it to be a composition in this case.
-        formatter.setComposition((this));
+        Composition comp = this.getRootGlyph(this); // I am not sure about this since the parent is a Glyph but I need it to be a composition in this case.
+        formatter.setComposition((comp));
         formatter.format();
         // will need to reformat here
         // get root and pass it to reformat? k

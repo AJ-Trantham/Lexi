@@ -26,27 +26,21 @@ public class SimpleCompositor implements Formatter {
         // for each child
         System.out.println("Starting formatting with with: " + parent.getChildren().size() + " children");
         for (Glyph child : parent.getChildren()) {
-
-            try {
-                // ask (leaf) child to set size, based on window
-                child.setSize(window); // - this only happens for the leaves that donlt already know theri w & h aka just character
-
-                // ask child to set position, based on cursor
-                child.bounds.setX(curs.getX());
-                child.bounds.setY(curs.getY());
-                // ask child to compose itself, recursively - this only happens for non-leaves
-                child.compose();
-            } catch (PenguineException e) {
-                //do nothing
-            }
-                // ask parent to adjust itself and cursor, based on child
-                // if this child is taller than the previous child, set the parents height to the child's height.
-                curs = parent.adjustCursor(curs, child);
-                System.out.println("x: " + curs.getX());
-                System.out.println("y: " + curs.getY());
-                System.out.println("w: " + curs.getWidth());
-                System.out.println("h: " + curs.getHeight());
-                System.out.println();
+            // ask (leaf) child to set size, based on window // - this only happens for the leaves that donlt already know theri w & h aka just character
+            try { child.setSize(window); } catch (PenguineException ignored) {}
+            // ask child to set position, based on cursor
+            child.bounds.setX(curs.getX());
+            child.bounds.setY(curs.getY());
+            // ask child to compose itself, recursively - this only happens for non-leaves
+            try { child.compose(); } catch (PenguineException ignored) {}
+            // ask parent to adjust itself and cursor, based on child
+            // if this child is taller than the previous child, set the parents height to the child's height.
+            curs = parent.adjustCursor(curs, child);
+            System.out.println("x: " + curs.getX());
+            System.out.println("y: " + curs.getY());
+            System.out.println("w: " + curs.getWidth());
+            System.out.println("h: " + curs.getHeight());
+            System.out.println();
         }
         // ask parent to adjust itself, based on cursor
         parent.bounds.setHeight(curs.getHeight());

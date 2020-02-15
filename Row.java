@@ -7,16 +7,11 @@ public class Row extends Composition {
        children = new ArrayList<Glyph>();
     }
 
-   //public void compose() {
-       //System.out.println("Compose in Row format");
-   // }
-
     @Override
     Cursor adjustCursor(Cursor curs, Glyph child) {
         curs.updateX(child.bounds.getX() + child.bounds.getWidth());
         curs.updateWidth(curs.getWidth() + child.bounds.getWidth());
-        if (child.bounds.getHeight() > this.bounds.getHeight()) {
-            this.bounds.setHeight(child.bounds.getHeight());
+        if (child.bounds.getHeight() > curs.getHeight()) {
             curs.updateHeight(child.bounds.getHeight());
         }
         return curs;
@@ -27,8 +22,8 @@ public class Row extends Composition {
         glyph.parent = this;
         children.add(position, glyph);
         // but probbaly need to send the root parent here to start reformatting
-        // this.getRootGlyph(this); // I am not sure about this since the parent is a Glyph but I need it to be a composition in this case.
-        formatter.setComposition((this));
+        Composition comp = this.getRootGlyph(this); // I am not sure about this since the parent is a Glyph but I need it to be a composition in this case.
+        formatter.setComposition((comp));
         formatter.format();
         // will need to reformat here
         // get root and pass it to reformat? k
