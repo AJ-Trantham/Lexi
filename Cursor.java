@@ -1,4 +1,4 @@
-/** Cursor keeps track of the current position when formatting*/
+/** Cursor keeps track of the current position when formatting */
 
 public class Cursor {
     private int x ;

@@ -1,10 +1,11 @@
+/** Row is a subclass of CompositeGlyph in Composite Pattern (163) */
 import java.util.ArrayList;
 
 public class Row extends Composition {
 
    public Row(Window window) {
        formatter = new SimpleCompositor(window);
-       children = new ArrayList<Glyph>();
+       children = new ArrayList<>();
     }
 
     @Override
@@ -18,15 +19,12 @@ public class Row extends Composition {
     }
 
     @Override
-    void insert(Glyph glyph, int position) throws PenguineException {
-        glyph.parent = this;
+    void insert(Glyph glyph, int position) throws OperationNotSupported {
+        glyph.parentComposition = this;
         children.add(position, glyph);
-        // but probbaly need to send the root parent here to start reformatting
-        Composition comp = this.getRootGlyph(this); // I am not sure about this since the parent is a Glyph but I need it to be a composition in this case.
+        Composition comp = this.getRootGlyph(this);
         formatter.setComposition((comp));
         formatter.format();
-        // will need to reformat here
-        // get root and pass it to reformat? k
     }
 
     // sets the composition to this row and then calls the compositors compose to begin formatting.

@@ -1,3 +1,4 @@
+/** A Glyph with children. Serves as Composite in the Composite Pattern (163) */
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -18,12 +19,12 @@ public class CompositeGlyph extends Glyph {
     }
 
     @Override
-    void remove(Glyph glyph) throws PenguineException {
+    void remove(Glyph glyph) throws OperationNotSupported {
         children.remove(glyph);
     }
 
     @Override
-    Glyph getChild(int position) throws PenguineException {
+    Glyph getChild(int position) throws OperationNotSupported {
         return children.get(position);
     }
 

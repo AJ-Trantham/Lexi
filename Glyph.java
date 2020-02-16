@@ -1,26 +1,25 @@
 import java.awt.*;
-import java.awt.geom.Point2D;
-//import java.awt.geom.Point2D; could maybe use this Point, there are a few different options to explore here
-// TODO: make sure and add add a description of classes: 1) patterns they participate in and 2) what the participants are, as the textbook would call them
 /**
  * The Glyph interface represents the type of object that can be displayed by Lexi.
  * This Interface is also employs the Composite pattern(163), a structural pattern where objects
  * (Glyphs in our case) are composed into recursive tree structures to represent part-whole hierarchies.
+ * Glyph is the participates in this pattern as Component
  * Default behavior is to throw an exception since leaf Glyph are more common and will not contain children.
  */
 abstract class Glyph {
-
-    protected Glyph parent = null;
-    protected Bounds bounds = new Bounds(0,0,0,0); // every glyph will have a bounds object that is 0 when created
+    protected Composition parentComposition = null;
+    protected Bounds bounds = new Bounds(0,0,0,0); // each glyph needs a bounds object, to store location
 
     /** Each Glyph needs to know how to draw its self */
     abstract void draw(Window window);
 
-    /** Returns true when the point passed is contained within the bounds of the Glyph
-     *  Don't glyphs need to know where they are drawn to see if a point intersects?
-     */
+    /** Returns true when the point passed is contained within the bounds of the Glyph */
+    //    ____
+    //   |*   |
+    //   |____|
     boolean intersects(Point point) {
-     return false;
+        return (point.getX() >= this.bounds.getX()) && point.getX() <= (this.bounds.getX() + this.bounds.getWidth())
+                && point.getY() <= this.bounds.getY() && point.getY() >= (this.bounds.getX() + this.bounds.getHeight());
     }
 
     /** Returns the space a Glyph occupies, returns the opposite corners of the smallest rectangle*/
@@ -30,42 +29,44 @@ abstract class Glyph {
 
 
     /** Adds a child Glyph to this Glyph. */
-    void insert(Glyph glyph, int position) throws PenguineException { // could give it an index?
-        throw new PenguineException();
+    void insert(Glyph glyph, int position) throws OperationNotSupported { // could give it an index?
+        throw new OperationNotSupported();
     }
 
     /** Removes a child from the Glyph */
-    void remove(Glyph glyph) throws PenguineException {
-        throw new PenguineException();
+    void remove(Glyph glyph) throws OperationNotSupported {
+        throw new OperationNotSupported();
     }
 
     /** Accesses a child glyph */
-    Glyph getChild(int position) throws PenguineException {
-        throw new PenguineException();
+    Glyph getChild(int position) throws OperationNotSupported {
+        throw new OperationNotSupported();
     }
 
-    /** Returns a reference to a glyph's parent */
-    Glyph getParent() {
-        return parent;
+    /** Returns a reference to a glyph's parent - not sure if this is necessary or correct */
+    Glyph getParentGlyph() { return parentComposition; }
+
+    /** Returns a reference to a glyph's parent Composition - used for formatting */
+    Composition getParentComp() {
+        return parentComposition;
     }
 
-    // this lets mw avoid casting but is basically the same thing
-    Composition getParentComposition() { return (Composition) parent; }
-
-    /** Traverse to root Glyph which is the Document column, used for reformatting */
-    protected Composition getRootGlyph(Composition glyph) {
-        while(glyph.getParent() != null) {
-            glyph = glyph.getParentComposition();
+    /** Traverse to root Glyph which is the Document column
+     *  Returning the composition since that is what is needed for formatting.
+     */
+    Composition getRootGlyph(Composition glyph) {
+        while(glyph.getParentComp() != null) {
+            glyph = glyph.getParentComp();
         }
         return glyph;
     }
 
-    void compose() throws PenguineException {
-        throw new PenguineException();
+    void compose() throws OperationNotSupported {
+        throw new OperationNotSupported();
     }
 
     /** Used for formatting, only need to override for Character Glyphs at this point since that is the one that is dynamic in size, maybe add for rectangle later??? */
-    void setSize(Window window) throws PenguineException {
-        throw new PenguineException();
+    void setSize(Window window) throws OperationNotSupported {
+        throw new OperationNotSupported();
     };
 }

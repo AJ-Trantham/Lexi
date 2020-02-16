@@ -1,7 +1,5 @@
 import java.awt.*;
-/** Represents the rectangular area a Glyph occupies and the opposite corners of that rectangular area.
- *  The return type of the inserts method for Glyphs.
- * */
+/** Represents the rectangular area a Glyph occupies and the opposite corners of that rectangular area */
 public class Bounds {
     private int x;
     private int y;
@@ -23,17 +21,13 @@ public class Bounds {
         return y;
     }
 
-    public int getHeight() {
-        return height;
-    }
+    public int getHeight() { return height; }
 
     public int getWidth() {
         return width;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
+    public void setX(int x) { this.x = x; }
 
     public void setY(int y) {
         this.y = y;
