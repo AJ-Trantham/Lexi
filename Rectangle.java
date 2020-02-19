@@ -1,6 +1,4 @@
-/**
- * Represents a Rectangle Glyph. This is a Leaf in the Composite Pattern (163)
- */
+/** Represents a Rectangle Glyph. This is a Leaf in the Composite Pattern (163) */
 public class Rectangle extends Glyph {
     private int width;
     private int height;
@@ -10,11 +8,6 @@ public class Rectangle extends Glyph {
         bounds.setHeight(height);
         this.width=width;
         this.height=height;
-    }
-
-    @Override
-    void setSize(Window window) throws OperationNotSupported {
-
     }
 
     @Override

@@ -17,19 +17,4 @@ public class Row extends Composition {
         }
         return curs;
     }
-
-    @Override
-    void insert(Glyph glyph, int position) throws OperationNotSupported {
-        glyph.parentComposition = this;
-        children.add(position, glyph);
-        Composition comp = this.getRootGlyph(this);
-        formatter.setComposition((comp));
-        formatter.format();
-    }
-
-    // sets the composition to this row and then calls the compositors compose to begin formatting.
-    public void compose() {
-        formatter.setComposition(this);
-        super.compose();
-    }
 }

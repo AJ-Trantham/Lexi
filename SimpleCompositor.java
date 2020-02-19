@@ -9,6 +9,7 @@ public class SimpleCompositor implements Formatter {
         this.window = window;
     }
 
+    @Override
     public void setComposition(Composition composition) { // takes a Composition object which contains all the glyphs that need formatting
         this.composition = composition;
     }
@@ -20,7 +21,7 @@ public class SimpleCompositor implements Formatter {
         Cursor curs = new Cursor(parent.bounds.getX(), parent.bounds.getY());
         // for each child
         for (Glyph child : parent.getChildren()) {
-            // ask (leaf) child to set size, based on window // - this only happens for the leaves that donlt already know theri w & h aka just character
+            // ask (leaf) child to set size, based on window // - this only happens for the leaves that don't already know their w & h so just character currently
             try { child.setSize(window); } catch (OperationNotSupported ignored) {}
             // ask child to set position, based on cursor
             child.bounds.setX(curs.getX());

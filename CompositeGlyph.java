@@ -1,15 +1,10 @@
-/** A Glyph with children. Serves as Composite in the Composite Pattern (163) */
-import java.awt.*;
+/** A Glyph with children which are also glyphs. Serves as Composite in the Composite Pattern (163) */
+
 import java.util.ArrayList;
 
 public class CompositeGlyph extends Glyph {
 
     protected ArrayList<Glyph> children;
-
-    @Override
-    boolean intersects(Point point) {
-        return super.intersects(point);
-    }
 
     @Override
     void draw(Window window) {
@@ -28,6 +23,16 @@ public class CompositeGlyph extends Glyph {
         return children.get(position);
     }
 
+    @Override
+    void insert(Glyph glyph, int position) throws OperationNotSupported {
+        glyph.parent = this;
+        children.add(position, glyph);
+        // We need to reformat every time we insert
+        Glyph doc = glyph.getRootGlyph();
+        doc.compose();
+    }
+
+    /** Used by a Formatter implementation */
     public ArrayList<Glyph> getChildren() {
         return children;
     }

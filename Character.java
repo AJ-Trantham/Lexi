@@ -1,6 +1,4 @@
-/**
- * Represents a character glyph. This is a leaf Glyph.
- */
+/** Represents a character glyph. This is a leaf Glyph. */
 public class Character extends Glyph {
     private char c;
 

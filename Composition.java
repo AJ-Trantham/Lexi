@@ -3,6 +3,7 @@ public abstract class Composition extends CompositeGlyph{
     protected Formatter formatter;
 
     public void compose() {
+        formatter.setComposition(this);
         formatter.format();
     }
 

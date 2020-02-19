@@ -15,20 +15,4 @@ public class Column extends Composition {
         if (curs.getWidth() < child.bounds.getWidth()) { curs.updateWidth(curs.getWidth() + child.bounds.getWidth());}
         return curs;
     }
-
-    // sets the composition to this column and then calls the compositors compose to begin formatting.
-    public void compose() {
-        formatter.setComposition(this);
-        super.compose();
-    }
-
-    @Override
-    void insert(Glyph glyph, int position) throws OperationNotSupported {
-        glyph.parentComposition = this;
-        children.add(position, glyph);
-        Composition comp = this.getRootGlyph(this);
-        formatter.setComposition((comp));
-        formatter.format();
-    }
-
 }

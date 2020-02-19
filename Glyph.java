@@ -7,7 +7,7 @@ import java.awt.*;
  * Default behavior is to throw an exception since leaf Glyph are more common and will not contain children.
  */
 abstract class Glyph {
-    protected Composition parentComposition = null;
+    protected Glyph parent = null;
     protected Bounds bounds = new Bounds(0,0,0,0); // each glyph needs a bounds object, to store location
 
     /** Each Glyph needs to know how to draw its self */
@@ -43,24 +43,24 @@ abstract class Glyph {
         throw new OperationNotSupported();
     }
 
-    /** Returns a reference to a glyph's parent - not sure if this is necessary or correct */
-    Glyph getParentGlyph() { return parentComposition; }
 
     /** Returns a reference to a glyph's parent Composition - used for formatting */
-    Composition getParentComp() {
-        return parentComposition;
+    Glyph getParent() {
+        return parent;
     }
 
     /** Traverse to root Glyph which is the Document column
      *  Returning the composition since that is what is needed for formatting.
      */
-    Composition getRootGlyph(Composition glyph) {
-        while(glyph.getParentComp() != null) {
-            glyph = glyph.getParentComp();
+    Glyph getRootGlyph() {
+        Glyph docRoot = this;
+        while(docRoot.getParent() != null) {
+             docRoot = docRoot.getParent();
         }
-        return glyph;
+        return docRoot;
     }
 
+    /** Only Glyphs with Children (CompositeGlyphs) are able to Compose themselves */
     void compose() throws OperationNotSupported {
         throw new OperationNotSupported();
     }
@@ -68,5 +68,5 @@ abstract class Glyph {
     /** Used for formatting, only need to override for Character Glyphs at this point since that is the one that is dynamic in size, maybe add for rectangle later??? */
     void setSize(Window window) throws OperationNotSupported {
         throw new OperationNotSupported();
-    };
+    }
 }

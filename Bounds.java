@@ -1,4 +1,3 @@
-import java.awt.*;
 /** Represents the rectangular area a Glyph occupies and the opposite corners of that rectangular area */
 public class Bounds {
     private int x;
