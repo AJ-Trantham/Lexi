@@ -1,4 +1,5 @@
-/**  Holds the Formatter object and inherits from composite glyph. Serves as Composition in Strategy Pattern (315) */
+/**  Holds the Formatter object and inherits from composite glyph.
+ * Serves as Composition/Context in Strategy Pattern (315) */
 public abstract class Composition extends CompositeGlyph{
     protected Formatter formatter;
 

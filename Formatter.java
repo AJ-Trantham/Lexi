@@ -1,5 +1,5 @@
 /** Represents the classes that will encapsulate a specific formatting algorithm
- *  Compositor class in the Strategy Pattern (315)
+ *  Strategy class in the Strategy Pattern (315)
  */
 interface Formatter {
     /** What to format */

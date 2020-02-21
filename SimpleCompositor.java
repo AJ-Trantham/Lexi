@@ -1,5 +1,5 @@
 /**
- * This is a specific Formatter (Compositor) implementation in Strategy (315)
+ * A concrete Formatter (Compositor or Strategy) implementation in Strategy (315)
  */
 public class SimpleCompositor implements Formatter {
     private Composition composition;
@@ -19,7 +19,6 @@ public class SimpleCompositor implements Formatter {
         // create cursor based on parent - parents's bound object know's where it is
         Composition parent = composition; // this is the current glyph who is getting formatted
         Cursor curs = new Cursor(parent.bounds.getX(), parent.bounds.getY());
-        // for each child
         for (Glyph child : parent.getChildren()) {
             // ask (leaf) child to set size, based on window // - this only happens for the leaves that don't already know their w & h so just character currently
             try { child.setSize(window); } catch (OperationNotSupported ignored) {}

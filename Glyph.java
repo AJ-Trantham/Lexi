@@ -1,9 +1,7 @@
 import java.awt.*;
 /**
- * The Glyph interface represents the type of object that can be displayed by Lexi.
- * This Interface is also employs the Composite pattern(163), a structural pattern where objects
- * (Glyphs in our case) are composed into recursive tree structures to represent part-whole hierarchies.
- * Glyph is the participates in this pattern as Component
+ * Represents the type of object that can be displayed by Lexi.
+ * Glyph participates as Component in Composite Pattern (163)
  * Default behavior is to throw an exception since leaf Glyph are more common and will not contain children.
  */
 abstract class Glyph {

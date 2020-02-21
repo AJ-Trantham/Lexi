@@ -1,4 +1,5 @@
-/** Column is a subclass of CompositeGlyph in Composite Pattern (163) */
+/** Column is a subclass of CompositeGlyph
+ * Composite in Composite Pattern (163) */
 import java.util.ArrayList;
 
 public class Column extends Composition {

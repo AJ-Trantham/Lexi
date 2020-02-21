@@ -1,7 +1,8 @@
 /**
  * Main Driver class for the Lexi Program, a graphical text editor
  * @author AJ Trantham
- * */
+ * To Run: javac Lexi.java, java Lexi
+ */
 public class Lexi {
     public static void main(String[] args) {
         SwingWindow swingWin = new SwingWindow("Lexi");

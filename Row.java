@@ -1,4 +1,5 @@
-/** Row is a subclass of CompositeGlyph in Composite Pattern (163) */
+/** Row is a subclass of CompositeGlyph
+ *  Composite in Composite Pattern (163) */
 import java.util.ArrayList;
 
 public class Row extends Composition {
