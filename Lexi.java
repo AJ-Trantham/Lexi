@@ -11,23 +11,31 @@ public class Lexi {
         CompositeGlyph row2 = new Row(swingWin);
         Glyph letterCol = new Column(swingWin);
         try {
-            Glyph border = new BorderDecorator(swingWin, 1);
-            border.insert(new Character('c'),0);
-//            letterCol.insert(new Character('x'),0);
-//            letterCol.insert(new Character('y'), 1);
-//            letterCol.insert(new Character('z'),2);
+            Glyph border = new BorderDecorator(swingWin, 5);
+            Glyph outerBorder = new BorderDecorator(swingWin, 5);
+            //outerBorder.insert();
+            Glyph innerBorder = new BorderDecorator(swingWin, 2);
+            //border.insert(new Character('c'),0);
+            letterCol.insert(new Character('x'),0);
+            letterCol.insert(new Character('y'),1);
+            letterCol.insert(new Character('z'),2);
 //
-//            row.insert(new Character('a'),0);
-//            row.insert(new Rectangle(10,15), 1);
-//            row.insert(letterCol, 2);
-//            row.insert(new Character('b'), 3);
+            innerBorder.insert(letterCol,0);
+            row.insert(new Character('a'),0);
+            row.insert(new Rectangle(10,15), 1);
+            row.insert(innerBorder, 2);
+            row.insert(new Character('b'), 3);
 //
 //            row2.insert(new Character('x'),0);
 //            row2.insert(new Rectangle(15, 10),1);
 //            row2.insert(new Character('z'), 2);
-//
+          border.insert(row,0);
+          //outerBorder.insert(border,0);
           doc.insert(border,0);
-//            doc.insert(row2, 1);
+
+          //row2.insert(outerBorder,1);
+
+          //doc.insert(outerBorder, 1);
         } catch (OperationNotSupported e) {
             e.printStackTrace();
         }

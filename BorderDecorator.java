@@ -18,13 +18,26 @@ public class BorderDecorator extends Embellishment {
         children.get(0).draw(window);
     }
 
+    @Override
+    public void compose() {
+        // temporarily reset the location to the inside corner so the child draws at the correct place
+        this.bounds.setX(this.bounds.getX() + borderWidth);
+        this.bounds.setY(this.bounds.getY() + borderWidth);
+        super.compose();
+        this.bounds.setX(this.bounds.getX() - borderWidth);
+        this.bounds.setY(this.bounds.getY() - borderWidth);
+    }
+
 
     @Override
     Cursor adjustCursor(Cursor curs, Glyph child) {
+        int borderAddition = 2*borderWidth;
         curs.updateHeight(curs.getY() + child.bounds.getHeight());
         curs.updateY(curs.getHeight());
-        curs.updateWidth(curs.getWidth() + child.bounds.getWidth());
+        curs.updateWidth(curs.getWidth() + child.bounds.getWidth() + borderAddition);
         curs.updateX(curs.getWidth());
+        // this seems to work but it seems like it shouldn't
+
         return curs;
     }
 }
