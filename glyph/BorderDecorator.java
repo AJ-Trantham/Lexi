@@ -1,3 +1,6 @@
+package glyph;
+import formatting.*;
+import window.*;
 import java.util.ArrayList;
 
 /** Concrete Decorator in the Decorator Pattern (175) */
@@ -11,7 +14,7 @@ public class BorderDecorator extends Embellishment {
     }
 
     @Override
-    void draw(Window window) {
+    public void draw(Window window) {
         // need to draw the boarder and its one child
         Bounds b = this.bounds;
         window.addBorder(b.getX(), b.getY(), b.getX() + b.getWidth(), b.getY() + b.getHeight(), borderWidth);
@@ -30,13 +33,15 @@ public class BorderDecorator extends Embellishment {
 
 
     @Override
-    Cursor adjustCursor(Cursor curs, Glyph child) {
+    public Cursor adjustCursor(Cursor curs, Glyph child) {
         int borderAddition = 2*borderWidth;
-        curs.updateHeight(curs.getY() + child.bounds.getHeight());
-        curs.updateY(curs.getHeight());
-        curs.updateWidth(curs.getWidth() + child.bounds.getWidth() + borderAddition);
-        curs.updateX(curs.getWidth());
-        // this seems to work but it seems like it shouldn't
+        curs.updateHeight(child.bounds.getHeight() + borderAddition);
+        curs.updateWidth(child.bounds.getWidth() + borderAddition);
+
+//        System.out.println("Border Formatting.Cursor: ");
+//        System.out.println("W: " + curs.getWidth());
+//        System.out.println("Height: " + curs.getHeight());
+//        System.out.println();
 
         return curs;
     }

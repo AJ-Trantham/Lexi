@@ -1,5 +1,10 @@
-/** Row is a subclass of CompositeGlyph
+package glyph;
+import window.*;
+import formatting.*;
+/** glyph.Row is a subclass of glyph.CompositeGlyph
  *  Composite in Composite Pattern (163) */
+
+
 import java.util.ArrayList;
 
 public class Row extends Composition {
@@ -10,7 +15,7 @@ public class Row extends Composition {
     }
 
     @Override
-    Cursor adjustCursor(Cursor curs, Glyph child) {
+    public Cursor adjustCursor(Cursor curs, Glyph child) {
         curs.updateX(child.bounds.getX() + child.bounds.getWidth());
         curs.updateWidth(curs.getWidth() + child.bounds.getWidth());
         if (child.bounds.getHeight() > curs.getHeight()) {

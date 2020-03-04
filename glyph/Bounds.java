@@ -1,4 +1,6 @@
-/** Represents the rectangular area a Glyph occupies and the opposite corners of that rectangular area */
+package glyph;
+
+/** Represents the rectangular area a glyph.Glyph occupies and the opposite corners of that rectangular area */
 public class Bounds {
     private int x;
     private int y;

@@ -1,6 +1,9 @@
+package glyph;
+import formatting.*;
+
 /**  Holds the Formatter object and inherits from composite glyph.
- * Serves as Composition/Context in Strategy Pattern (315) */
-public abstract class Composition extends CompositeGlyph{
+ * Serves as glyph.Composition/Context in Strategy Pattern (315) */
+public abstract class Composition extends CompositeGlyph {
     protected Formatter formatter;
 
     public void compose() {
@@ -9,5 +12,5 @@ public abstract class Composition extends CompositeGlyph{
     }
 
     /** rows and cols override, updates the height/width of cursor - this is different for each subclass */
-    abstract Cursor adjustCursor(Cursor curs, Glyph child);
+    public abstract Cursor adjustCursor(Cursor curs, Glyph child);
 }

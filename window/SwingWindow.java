@@ -1,6 +1,5 @@
-//package window;
-//
-//import glyph.*;
+package window;
+import glyph.*;
 
 import java.util.*;
 import java.awt.*;

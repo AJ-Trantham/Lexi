@@ -1,4 +1,6 @@
-/** Cursor keeps track of the current position when formatting */
+package formatting;
+
+/** Formatting.Cursor keeps track of the current position when formatting */
 
 public class Cursor {
     private int x ;

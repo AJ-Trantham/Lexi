@@ -1,6 +1,6 @@
-//package window;
-//
-//import glyph.*;
+package window;
+import glyph.*;
+
 
 public interface Window {
 

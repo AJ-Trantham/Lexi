@@ -1,4 +1,7 @@
-/** Represents a character glyph. This is a leaf Glyph.
+package glyph;
+import window.Window;
+
+/** Represents a character glyph. This is a leaf glyph.Glyph.
  * Leaf in Composite Pattern (163) */
 public class Character extends Glyph {
     private char c;
@@ -8,8 +11,8 @@ public class Character extends Glyph {
     }
 
     @Override
-    void draw(Window window) {
-        window.drawCharacter(c, super.getBounds(this).getX(), super.getBounds(this).getY());
+    public void draw(Window window) {
+        window.drawCharacter(c, super.getBounds().getX(), super.getBounds().getY());
     }
 
     @Override
