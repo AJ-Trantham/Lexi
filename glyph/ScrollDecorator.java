@@ -17,10 +17,6 @@ public class ScrollDecorator extends Embellishment {
         try {this.getChild(0).draw(win); } catch (OperationNotSupported ignored) {}
     }
 
-    public void compose() {
-        super.compose();
-    }
-
     @Override
     public Cursor adjustCursor(Cursor curs, Glyph child) {
         curs.updateWidth( child.bounds.getWidth() + scrollWidth);

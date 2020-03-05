@@ -9,7 +9,7 @@ import java.awt.*; // TODO: this is for point may want to not include this
  * Default behavior is to throw an exception since leaf glyph.Glyph are more common and will not contain children.
  */
 public abstract class Glyph {
-    Glyph parent = null;
+    protected Glyph parent = null;
     protected Bounds bounds = new Bounds(0,0,0,0); // each glyph needs a bounds object, to store location
 
     /** Each glyph.Glyph needs to know how to draw its self */
@@ -19,7 +19,7 @@ public abstract class Glyph {
     //    ____
     //   |*   |
     //   |____|
-    boolean intersects(Point point) {
+    public boolean intersects(Point point) {
         return (point.getX() >= this.bounds.getX()) && point.getX() <= (this.bounds.getX() + this.bounds.getWidth())
                 && point.getY() <= this.bounds.getY() && point.getY() >= (this.bounds.getX() + this.bounds.getHeight());
     }

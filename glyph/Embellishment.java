@@ -23,5 +23,5 @@ abstract class Embellishment extends Composition {
         doc.compose();
     }
 
-    // may need its own compose method here?
+    // may need its own compose method here? TODO: call the parent's compose method?
 }
