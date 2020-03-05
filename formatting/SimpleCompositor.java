@@ -1,6 +1,4 @@
 package formatting;
-
-import glyph.Composition;
 import glyph.*;
 import window.*;
 import exceptions.*;
@@ -25,10 +23,17 @@ public class SimpleCompositor implements Formatter {
     public void format() {
         // create cursor based on parent - parents's bound object know's where it is
         Composition parent = composition; // this is the current glyph who is getting formatted
+        //ArrayList<Glyph> children = parent.children;
         Cursor curs = new Cursor(parent.getBounds().getX(), parent.getBounds().getY());
-        for (Glyph child : parent.getChildren()) {
-            // ask (leaf) child to set size, based on window // - this only happens for the leaves that don't already know their w & h so just character currently
-            try { child.setSize(window); } catch (OperationNotSupported ignored) {}
+        int i=0;
+        Glyph child = null;
+        while (true) {
+            try {
+                if (parent.getChild(i) == null) break;
+                child = parent.getChild(i);
+                // ask (leaf) child to set size, based on window // - this only happens for the leaves that don't already know their w & h so just character currently
+                child.setSize(window);
+            } catch (OperationNotSupported ignored) {}
             // ask child to set position, based on cursor
             child.getBounds().setX(curs.getX());
             child.getBounds().setY(curs.getY());
@@ -36,6 +41,7 @@ public class SimpleCompositor implements Formatter {
             try { child.compose(); } catch (OperationNotSupported ignored) {}
             // ask parent to adjust itself and cursor, based on child
             curs = parent.adjustCursor(curs, child);
+            i++;
         }
         // ask parent to adjust itself, based on cursor
         parent.getBounds().setHeight(curs.getHeight());
