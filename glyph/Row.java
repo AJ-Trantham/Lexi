@@ -1,17 +1,23 @@
 package glyph;
+import exceptions.OperationNotSupported;
 import window.*;
 import formatting.*;
 /** glyph.Row is a subclass of glyph.CompositeGlyph
  *  Composite in Composite Pattern (163) */
-
-
-import java.util.ArrayList;
-
 public class Row extends Composition {
 
    public Row(Window window) {
-       formatter = new SimpleCompositor(window);
-       children = new ArrayList<>();
+       super(window);
+   }
+
+   public Row(Window window, String string) {
+       super(window);
+       try {
+            for (int i=0; i<string.length(); i++)
+                insert(new Character(string.charAt(i)),i);
+       } catch (OperationNotSupported e) {
+           System.out.println(e);
+       }
     }
 
     @Override

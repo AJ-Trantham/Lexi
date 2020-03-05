@@ -1,15 +1,13 @@
 package glyph;
 import formatting.*;
 import window.*;
-import java.util.ArrayList;
 
 /** Concrete Decorator in the Decorator Pattern (175) */
 public class BorderDecorator extends Embellishment {
     private int borderWidth;
 
     public BorderDecorator(Window window, int borderWidth) {
-        formatter = new SimpleCompositor(window);
-        children = new ArrayList<>();
+        super(window);
         this.borderWidth=borderWidth;
     }
 
@@ -37,12 +35,6 @@ public class BorderDecorator extends Embellishment {
         int borderAddition = 2*borderWidth;
         curs.updateHeight(child.bounds.getHeight() + borderAddition);
         curs.updateWidth(child.bounds.getWidth() + borderAddition);
-
-//        System.out.println("Border Formatting.Cursor: ");
-//        System.out.println("W: " + curs.getWidth());
-//        System.out.println("Height: " + curs.getHeight());
-//        System.out.println();
-
         return curs;
     }
 }

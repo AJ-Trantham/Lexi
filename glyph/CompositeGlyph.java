@@ -9,6 +9,10 @@ public class CompositeGlyph extends Glyph {
 
     protected ArrayList<Glyph> children;
 
+    public CompositeGlyph() {
+        children = new ArrayList<>();
+    }
+
     @Override
     public void draw(Window window) {
         for (Glyph g : children) {
@@ -30,12 +34,9 @@ public class CompositeGlyph extends Glyph {
     public void insert(Glyph glyph, int position) throws OperationNotSupported {
         glyph.parent = this;
         children.add(position, glyph);
-        // We need to reformat every time we insert
-        Glyph doc = glyph.getRootGlyph();
-        doc.compose();
     }
 
-    /** Used by a Formatter implementation */
+    /** Used by a Formatter implementation */ //TODO: NEED TO REMOVE THIS APPARENTLY
     public ArrayList<Glyph> getChildren() {
         return children;
     }
