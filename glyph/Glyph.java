@@ -1,8 +1,7 @@
 package glyph;
 import exceptions.*;
 import window.Window;
-import java.awt.*; // TODO: this is for point may want to not include this
-
+import java.awt.*;
 /**
  * Represents the type of object that can be displayed by Lexi.
  * glyph.Glyph participates as Component in Composite Pattern (163)

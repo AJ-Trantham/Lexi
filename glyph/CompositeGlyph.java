@@ -35,4 +35,9 @@ public class CompositeGlyph extends Glyph {
         glyph.parent = this;
         children.add(position, glyph);
     }
+
+    /**Get's the first child in the list of children*/
+    public Glyph getFirstChild() {
+        return children.get(0);
+    }
 }

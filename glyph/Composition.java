@@ -4,7 +4,9 @@ import formatting.*;
 import window.*;
 
 /**  Holds the Formatter object and inherits from composite glyph.
- * Serves as glyph.Composition/Context in Strategy Pattern (315) */
+ * Serves as glyph.Composition/Context in Strategy Pattern (315)
+ * Component in the Decorator Pattern (175)
+ */
 public abstract class Composition extends CompositeGlyph {
     protected Formatter formatter;
 

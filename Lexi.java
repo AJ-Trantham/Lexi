@@ -10,13 +10,14 @@ import window.*;
  */
 public class Lexi {
     public static void main(String[] args) {
-        //testBorderCol();
-        testFinalBorderScroll();
+        SwingWindow swingWin = new SwingWindow("Lexi");
+        testBorderCol();
+        //testFinalBorderScroll(swingWin);
     }
 
     // test utilizing fancy constructors
-    private static void testFinalBorderScroll() {
-        SwingWindow swingWin = new SwingWindow("Lexi");
+    private static void testFinalBorderScroll(SwingWindow swingWin) {
+
         Glyph row1 = new Row(swingWin);
         Glyph row2 = new Row(swingWin);
         Glyph characterA = new Character('a');

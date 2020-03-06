@@ -14,14 +14,15 @@ abstract class Embellishment extends Composition {
 
     @Override
     public void insert(Glyph glyph, int position) throws OperationNotSupported {
-        glyph.parent = this;
-        //don't want to add more than one child to an embellishment - this is not the most reusable but is clear
-        if (children.size() > 1) { throw new OperationNotSupported(); }
-        children.add(position, glyph);
-        // We need to reformat every time we insert
-        Glyph doc = glyph.getRootGlyph();
-        doc.compose();
+        // only allow a single child
+        if (position > 0) {
+            throw new OperationNotSupported();
+        }
+        super.insert(glyph, position);
     }
 
-    // may need its own compose method here? TODO: call the parent's compose method?
+    @Override
+    public void remove(Glyph glyph) throws OperationNotSupported {
+        this.getFirstChild().remove(glyph);
+    }
 }
