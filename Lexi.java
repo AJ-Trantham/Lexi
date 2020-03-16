@@ -1,7 +1,12 @@
 import exceptions.OperationNotSupported;
 import glyph.*;
 import glyph.Character;
+import widget.*;
+import widget.AbstractButton;
 import window.*;
+
+import javax.swing.*;
+import javax.swing.border.Border;
 
 /**
  * Main Driver class for the Lexi Program, a graphical text editor
@@ -10,9 +15,11 @@ import window.*;
  */
 public class Lexi {
     public static void main(String[] args) {
+        System.out.println(System.getenv("LexiLook"));
         SwingWindow swingWin = new SwingWindow("Lexi");
-        testBorderCol();
+        //testBorderCol();
         //testFinalBorderScroll(swingWin);
+        testButton(swingWin);
     }
 
     // test utilizing fancy constructors
@@ -28,13 +35,16 @@ public class Lexi {
         Glyph horsRect = new Rectangle(15,10);
         Glyph border = new BorderDecorator(swingWin,5);
         Glyph scroll = new ScrollDecorator(swingWin);
+        Glyph anotherScroller = new ScrollDecorator(swingWin);
         String[] strs = {"This is a", "border demonstration", "Scroller too!"};
         Glyph col = new Column(swingWin, strs);
         Glyph doc = new Column(swingWin);
         try {
             // build row 1
             scroll.insert(col,0);
-            border.insert(scroll,0);
+            anotherScroller.insert(scroll,0);
+            //anotherScroller.insert(new Character('c'),1); -- if Embellishments try to hold more than one child exception is thrown, could insert into the child - this would be that forwarding idea
+            border.insert(anotherScroller,0);
             row1.insert(characterA,0);
             row1.insert(vertRect,1);
             row1.insert(border,2);
@@ -46,6 +56,7 @@ public class Lexi {
             //build doc
             doc.insert(row1, 0);
             doc.insert(row2,1);
+            //anotherScroller.insert(doc,0);
 
         } catch (OperationNotSupported operationNotSupported) {
             operationNotSupported.printStackTrace();
@@ -86,5 +97,20 @@ public class Lexi {
             e.printStackTrace();
         }
         swingWin.setContents(scroll);
+    }
+
+    public static void testButton(SwingWindow swingWin) {
+        BorderDecorator bd = new BorderDecorator(swingWin, 2);
+        WidgetFactory widgetFactory = WidgetFactory.getInstance();
+        //System.out.println(widgetFactory.toString());
+        AbstractButton button = widgetFactory.createButton(swingWin);
+        Row row = new Row(swingWin, "Button");
+        try {
+            button.insert(row,0);
+            bd.insert(button,0);
+        } catch (OperationNotSupported operationNotSupported) {
+            operationNotSupported.printStackTrace();
+        }
+        swingWin.setContents(bd);
     }
 }
