@@ -25,8 +25,8 @@ public class Column extends Composition {
 
     @Override
     public Cursor adjustCursor(Cursor curs, Glyph child) {
-        curs.updateHeight(curs.getY() + child.bounds.getHeight());
-        curs.updateY(curs.getHeight());
+        curs.updateY(curs.getY() + child.bounds.getHeight());
+        curs.updateHeight(child.bounds.getHeight() + curs.getHeight());
         if (curs.getWidth() < child.bounds.getWidth()) { curs.updateWidth(child.bounds.getWidth());}
         return curs;
     }

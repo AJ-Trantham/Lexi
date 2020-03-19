@@ -10,7 +10,11 @@ public class RedLabel extends AbstractLabel {
     }
 
     @Override
-    public Cursor adjustCursor(Cursor curs, Glyph child) {
-        return null;
+    public void draw(Window window) {
+        window.drawLabel(bounds.getX(),bounds.getY(),bounds.getWidth(), bounds.getHeight() , "red");
+        //TODO: Could maybe move this to super, something to look into
+        for (Glyph g:this.children) {
+            g.draw(window);
+        }
     }
 }

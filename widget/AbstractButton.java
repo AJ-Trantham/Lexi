@@ -5,7 +5,7 @@ import window.Window;
 
 // abstract product in Abstract Factory Pattern
 public abstract class AbstractButton extends Embellishment {
-    private final int buttonPadding = 2;
+    private final int buttonPadding = 1;
 
     public AbstractButton(Window window) {
         super(window);

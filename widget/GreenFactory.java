@@ -9,9 +9,7 @@ public class GreenFactory extends WidgetFactory {
     }
 
     @Override
-    public AbstractLabel createLabel(Window window) {
-            return new GreenLabel(window);
-    }
+    public AbstractLabel createLabel(Window window) { return new GreenLabel(window); }
 
     public String toString() {
         return "Green Factory";
