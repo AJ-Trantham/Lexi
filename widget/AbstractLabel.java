@@ -3,9 +3,13 @@ import formatting.Cursor;
 import glyph.*;
 import window.Window;
 
+/**
+ * Abstract Product in Abstract Factory pattern (87)
+ */
+
 public abstract class AbstractLabel extends Embellishment {
-    public AbstractLabel(Window window) {
-        super(window);
+    public AbstractLabel(Window window, Glyph child) {
+        super(window, child);
     }
 
     @Override
@@ -14,4 +18,6 @@ public abstract class AbstractLabel extends Embellishment {
         curs.updateHeight(child.getBounds().getHeight());
         return curs;
     }
+
+
 }

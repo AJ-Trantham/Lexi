@@ -16,7 +16,6 @@ public abstract class Composition extends CompositeGlyph {
 
     public void compose() {
         formatter.setComposition(this);
-        //System.out.println("Starting Formatting.");
         formatter.format();
     }
 

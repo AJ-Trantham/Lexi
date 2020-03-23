@@ -3,12 +3,15 @@ import formatting.Cursor;
 import glyph.*;
 import window.Window;
 
-// abstract product in Abstract Factory Pattern
+/**
+ * Abstract Product in Abstract Factory pattern (87)
+ */
+
 public abstract class AbstractButton extends Embellishment {
     private final int buttonPadding = 1;
 
-    public AbstractButton(Window window) {
-        super(window);
+    public AbstractButton(Window window, Glyph child) {
+        super(window, child);
     }
 
     @Override

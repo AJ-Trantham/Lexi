@@ -7,22 +7,22 @@ import window.Window;
  *  Is a Composition - Context in Strategy Pattern
  *  Is a Decorator in the Decorator Pattern (175) */
 public abstract class Embellishment extends Composition {
-
-    public Embellishment(Window window) {
+    public Embellishment(Window window, Glyph child) {
         super(window);
+        try {
+            super.insert(child,0);
+        } catch (OperationNotSupported operationNotSupported) {
+            operationNotSupported.printStackTrace();
+        }
     }
 
     @Override
     public void insert(Glyph glyph, int position) throws OperationNotSupported {
-        // only allow a single child
-        if (position > 0) {
-            throw new OperationNotSupported();
-        }
-        super.insert(glyph, position);
+        this.getChild(0).insert(glyph, position);
     }
 
     @Override
     public void remove(Glyph glyph) throws OperationNotSupported {
-        this.getFirstChild().remove(glyph);
+        this.getChild(0).remove(glyph);
     }
 }

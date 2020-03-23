@@ -3,20 +3,19 @@ package widget;
 import glyph.Glyph;
 import window.Window;
 
+/**
+ * ConcreteCreator in Factory Method pattern (107)
+ * Product in Abstract Factory (87)
+ */
+
 public class GreenButton extends AbstractButton {
 
-    public GreenButton(Window window) {
-        super(window);
-
+    public GreenButton(Window window, Glyph child) {
+        super(window, child);
     }
 
     public void draw(Window window) {
         window.drawButton(bounds.getX(),bounds.getY(),bounds.getWidth(), bounds.getHeight() , "green");
-        //TODO: Could maybe move this to super, something to look into
-        for (Glyph g:this.children) {
-            g.draw(window);
-        }
-        // draw children via embellishment
-        //super.draw(window);
+        super.draw(window);
     }
 }

@@ -1,8 +1,12 @@
 package widget;
 
+import glyph.Glyph;
 import window.*;
 
-// Is the abstract Factory in the Abstract Factory Pattern
+/** Abstract Factory in the Abstract Factory Pattern (87)
+ *  Singleton in Singleton pattern (127)
+ */
+
 public abstract class WidgetFactory {
     private static WidgetFactory instance = null;
 
@@ -20,6 +24,6 @@ public abstract class WidgetFactory {
         }
         return instance;
     }
-    public abstract AbstractButton createButton(Window window);
-    public abstract AbstractLabel createLabel(Window window);
+    public abstract AbstractButton createButton(Window window, Glyph child);
+    public abstract AbstractLabel createLabel(Window window, Glyph child);
 }
