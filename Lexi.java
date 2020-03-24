@@ -11,9 +11,7 @@ import window.*;
  */
 public class Lexi {
     public static void main(String[] args) {
-        System.out.println(System.getenv("LexiLook"));
         SwingWindow swingWin = new SwingWindow("Lexi");
-
         Glyph doc = new Column(swingWin); // Parent Glyph that holds all the others
         Glyph row = new Row(swingWin);
         Glyph row2 = new Row(swingWin);

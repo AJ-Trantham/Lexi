@@ -12,10 +12,10 @@ public abstract class WidgetFactory {
 
     public static WidgetFactory getInstance() throws Exception {
         if(instance == null) {
-            if (System.getenv("LexiLook").equals("Green")) {
+            if (System.getenv("LEXILOOK").equals("Green")) {
                 instance = new GreenFactory();
                 return instance;
-            } else if (System.getenv("LexiLook").equals("Red")) {
+            } else if (System.getenv("LEXILOOK").equals("Red")) {
                 instance = new RedFactory();
                 return instance;
             } else {
