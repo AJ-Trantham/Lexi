@@ -1,7 +1,6 @@
 package widget;
-
+import window.*;
 import glyph.Glyph;
-import window.Window;
 
 /**
  * Concrete Factory in Abstract Factory pattern (87)
@@ -9,6 +8,18 @@ import window.Window;
  */
 
 public class RedFactory extends WidgetFactory {
+    private static WidgetFactory instance = null;
+
+    private RedFactory() {
+        super();
+    }
+
+    public static WidgetFactory getInstance() {
+        if (instance == null) {
+            instance = new RedFactory();
+        }
+        return instance;
+    }
 
     @Override
     public AbstractButton createButton(Window window, Glyph child) {

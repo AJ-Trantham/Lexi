@@ -11,7 +11,8 @@ import window.*;
  */
 public class Lexi {
     public static void main(String[] args) {
-        SwingWindow swingWin = new SwingWindow("Lexi");
+        ApplicationWindow swingWin = new ApplicationWindow("Lexi");
+        swingWin.getInstance(swingWin);
         Glyph doc = new Column(swingWin); // Parent Glyph that holds all the others
         Glyph row = new Row(swingWin);
         Glyph row2 = new Row(swingWin);

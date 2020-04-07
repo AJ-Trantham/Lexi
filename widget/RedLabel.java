@@ -1,8 +1,6 @@
 package widget;
-
-import formatting.Cursor;
+import window.*;
 import glyph.Glyph;
-import window.Window;
 
 /**
  * ConcreteCreator in Factory Method pattern (107)

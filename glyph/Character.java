@@ -1,5 +1,5 @@
 package glyph;
-import window.Window;
+import window.*;
 
 /** Represents a character glyph. This is a leaf glyph.Glyph.
  * Leaf in Composite Pattern (163) */

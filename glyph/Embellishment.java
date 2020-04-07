@@ -1,6 +1,6 @@
 package glyph;
 import exceptions.*;
-import window.Window;
+import window.*;
 
 
 /** Is a Composite in the Composite Patter (163)

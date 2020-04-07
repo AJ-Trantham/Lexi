@@ -1,7 +1,8 @@
 package glyph;
 import exceptions.*;
-import window.Window;
-import java.awt.*;
+
+import window.*;
+
 /**
  * Represents the type of object that can be displayed by Lexi.
  * glyph.Glyph participates as Component in Composite Pattern (163)
@@ -18,9 +19,11 @@ public abstract class Glyph {
     //    ____
     //   |*   |
     //   |____|
-    public boolean intersects(Point point) {
-        return (point.getX() >= this.bounds.getX()) && point.getX() <= (this.bounds.getX() + this.bounds.getWidth())
-                && point.getY() <= this.bounds.getY() && point.getY() >= (this.bounds.getX() + this.bounds.getHeight());
+    public boolean intersects(int x, int y) {
+        //TODO: need to fix this
+//        return (point.getX() >= this.bounds.getX()) && point.getX() <= (this.bounds.getX() + this.bounds.getWidth())
+//                && point.getY() <= this.bounds.getY() && point.getY() >= (this.bounds.getX() + this.bounds.getHeight());
+        return true;
     }
 
     /** Returns the space a glyph.Glyph occupies, returns the opposite corners of the smallest rectangle*/

@@ -1,7 +1,7 @@
 package widget;
 import formatting.Cursor;
 import glyph.*;
-import window.Window;
+import window.*;
 
 /**
  * Abstract Product in Abstract Factory pattern (87)

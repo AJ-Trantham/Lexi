@@ -13,10 +13,10 @@ public abstract class WidgetFactory {
     public static WidgetFactory getInstance() throws Exception {
         if(instance == null) {
             if (System.getenv("LEXILOOK").equals("Green")) {
-                instance = new GreenFactory();
+                instance = GreenFactory.getInstance();
                 return instance;
             } else if (System.getenv("LEXILOOK").equals("Red")) {
-                instance = new RedFactory();
+                instance = RedFactory.getInstance();
                 return instance;
             } else {
                 throw new Exception("Look and Feel environment Variable doesn't match a known option.");
