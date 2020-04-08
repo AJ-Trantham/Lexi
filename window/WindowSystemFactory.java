@@ -1,16 +1,17 @@
 package window;
+/** Abstract factory in Abstract Factory Pattern(87) */
+public class WindowSystemFactory {
+    private static WindowImp imp;
 
-// Abstract factory in Abstract Factory Pattern(87)
-//public class WindowSystemFactory {
-//    public WindowImp getInstance( Window window) {
-//        if (windowImp == null) {
-//            //get a swing window implementation
-//            if (System.getenv("WINDOW").equals("Swing")) {
-//                windowImp = new SwingWindow(window.getTitle(), window);
-//            } else if (System.getenv("WINDOW").equals("Awt")) {
-//                windowImp = new AwtWindow(window.getTitle(), window);
-//            }
-//        }
-//        return windowImp;
-//    }
-//}
+    protected static WindowImp createWindowImp(Window window, String title) {
+        if (imp == null) {
+            //get a swing window implementation
+            if (System.getenv("WINDOW").equals("Swing")) {
+                imp = new SwingWindow(title, window);
+            } else if (System.getenv("WINDOW").equals("Awt")) {
+                imp = new AwtWindow(title, window);
+            }
+        }
+        return imp;
+    }
+}

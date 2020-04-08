@@ -4,30 +4,17 @@ import glyph.Glyph;
 
 /** Abstract Factory in the Abstract Factory Pattern (87)
  *  Singleton in Singleton pattern (127)
+ *  Abstraction (left side) in Bridge(151)
  *  Note: We can have multiple Window objects but we only want 1 window factory,
  *  similar to how we only wanted one look and feel
  */
 public abstract class Window {
-    protected static WindowImp windowImp;
-    protected Glyph glyphToDraw;
+    private Glyph glyphToDraw;
+    private WindowImp windowImp;
 
-//    public Window() {
-//        windowImp =
-//    }
-
-    public WindowImp getInstance( Window window) {
-        if (windowImp == null) {
-            //get a swing window implementation
-            if (System.getenv("WINDOW").equals("Swing")) {
-                windowImp = new SwingWindow(window.getTitle(), window);
-            } else if (System.getenv("WINDOW").equals("Awt")) {
-                windowImp = new AwtWindow(window.getTitle(), window);
-            }
-        }
-        return windowImp;
+    public Window(String title) {
+        windowImp = WindowSystemFactory.createWindowImp(this, title);
     }
-
-    protected abstract String getTitle();
 
     // Implement window methods
     public void drawCharacter(char c, int x, int y) {
@@ -47,7 +34,6 @@ public abstract class Window {
     }
 
     public void setContents(Glyph glyph) {
-        // I can probably just get rid of this parameter, just let the windwoing system do its thing, maybe pass this glyph to draw
         this.glyphToDraw = glyph;
         windowImp.setContents();
     }
@@ -68,6 +54,10 @@ public abstract class Window {
         windowImp.drawLabel(x, y, width, height, color);
     }
 
+    /**
+     * Start a drawing cycle on this window.
+     * It is important that the glyph does the drawing, as the windowing system shouldn't know about glyphs
+     */
     public void draw() {
         glyphToDraw.draw(this);
     }
