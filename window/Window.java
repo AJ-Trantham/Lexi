@@ -13,7 +13,8 @@ public abstract class Window {
     private WindowImp windowImp;
 
     public Window(String title) {
-        windowImp = WindowSystemFactory.createWindowImp(this, title);
+        WindowSystemFactory windowSystemFactory = WindowSystemFactory.getWindowSystemFactory();
+        try {windowImp = windowSystemFactory.createWindowImp(this, title);} catch (Exception e) { e.printStackTrace();}
     }
 
     // Implement window methods
