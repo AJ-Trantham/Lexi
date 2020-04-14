@@ -1,4 +1,3 @@
-import exceptions.OperationNotSupported;
 import glyph.*;
 import glyph.Character;
 import widget.*;

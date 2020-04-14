@@ -13,11 +13,17 @@ public abstract class Window {
     private WindowImp windowImp;
 
     public Window(String title) {
-        WindowSystemFactory windowSystemFactory = WindowSystemFactory.getWindowSystemFactory();
-        try {windowImp = windowSystemFactory.createWindowImp(this, title);} catch (Exception e) { e.printStackTrace();}
+
+        try {
+            // get a factory and use it to create a window implementation
+            WindowSystemFactory wsf = WindowSystemFactory.getWindowSystemFactory();
+            windowImp = wsf.createWindowImp(this, title);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    // Implement window methods
+    // Implement window methods, but delegate to the Imp Class
     public void drawCharacter(char c, int x, int y) {
         windowImp.drawCharacter(c, x, y);
     }
