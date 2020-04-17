@@ -1,5 +1,7 @@
 package window;
 
+import command.*;
+import exceptions.OperationNotSupported;
 import glyph.Glyph;
 
 /** Abstract Factory in the Abstract Factory Pattern (87)
@@ -9,15 +11,17 @@ import glyph.Glyph;
  *  similar to how we only wanted one look and feel
  */
 public abstract class Window {
-    private Glyph glyphToDraw;
+    private Glyph root;
     private WindowImp windowImp;
+    private KeyMap keyMap;
+    private CommandHistory commandHistory;
 
     public Window(String title) {
-
         try {
             // get a factory and use it to create a window implementation
             WindowSystemFactory wsf = WindowSystemFactory.getWindowSystemFactory();
             windowImp = wsf.createWindowImp(this, title);
+            commandHistory = CommandHistory.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,7 +45,7 @@ public abstract class Window {
     }
 
     public void setContents(Glyph glyph) {
-        this.glyphToDraw = glyph;
+        this.root = glyph;
         windowImp.setContents();
     }
 
@@ -61,11 +65,57 @@ public abstract class Window {
         windowImp.drawLabel(x, y, width, height, color);
     }
 
+    public void setFrontSize(int size) {
+        windowImp.setFontSize(size);
+    }
+
+    public int getFontSize() {
+        return windowImp.getFontSize();
+    }
+
+    /** Refreshes window content */
+    public void repaint() {
+        windowImp.repaint();
+    }
+
     /**
      * Start a drawing cycle on this window.
      * It is important that the glyph does the drawing, as the windowing system shouldn't know about glyphs
      */
     public void draw() {
-        glyphToDraw.draw(this);
+        root.draw(this);
+    }
+
+    public void reformat() {
+        try { root.compose(); }
+        catch (OperationNotSupported ignore) {}
+    }
+
+    public void setKeyMap(KeyMap keyMap) {
+        this.keyMap = keyMap;
+    }
+
+    public void key(char keyChar) {
+        Command cmd = keyMap.get(keyChar);
+        if (cmd != null) {
+            cmd.execute(this);
+            if (cmd.isUndoable()) {commandHistory.add(cmd);}
+        }
+    }
+
+    /** Executes the command object of the glyph that was clicked on*/
+    public void click(int x, int y) {
+        Glyph clikedGlyph = root.find(x, y);
+        if (clikedGlyph != null) {
+            Command cmd = null;
+            try {
+                cmd = clikedGlyph.click();
+                cmd.execute(this);
+                if (cmd.isUndoable()) {commandHistory.add(cmd);}
+            } catch (OperationNotSupported operationNotSupported) {
+                operationNotSupported.printStackTrace();
+            }
+
+        }
     }
 }

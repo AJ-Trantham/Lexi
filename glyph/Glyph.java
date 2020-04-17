@@ -1,4 +1,6 @@
 package glyph;
+import command.ChangeFontCommand;
+import command.Command;
 import exceptions.*;
 
 import window.*;
@@ -7,10 +9,12 @@ import window.*;
  * Represents the type of object that can be displayed by Lexi.
  * glyph.Glyph participates as Component in Composite Pattern (163)
  * Default behavior is to throw an exception since leaf glyph.Glyph are more common and will not contain children.
+ * Handler in ChainOfResponsibility
  */
 public abstract class Glyph {
     protected Glyph parent = null;
     protected Bounds bounds = new Bounds(0,0,0,0); // each glyph needs a bounds object, to store location
+    protected Command command = null;
 
     /** Each glyph.Glyph needs to know how to draw its self */
     public abstract void draw(Window window);
@@ -20,10 +24,8 @@ public abstract class Glyph {
     //   |*   |
     //   |____|
     public boolean intersects(int x, int y) {
-        //TODO: need to fix this
-//        return (point.getX() >= this.bounds.getX()) && point.getX() <= (this.bounds.getX() + this.bounds.getWidth())
-//                && point.getY() <= this.bounds.getY() && point.getY() >= (this.bounds.getX() + this.bounds.getHeight());
-        return true;
+        return (x >= bounds.getX()) && x <= (bounds.getX() + bounds.getWidth())
+                && y >= bounds.getY() && y <= (bounds.getY() + bounds.getHeight());
     }
 
     /** Returns the space a glyph.Glyph occupies, returns the opposite corners of the smallest rectangle*/
@@ -72,5 +74,20 @@ public abstract class Glyph {
     /** Used for formatting, only need to override for glyph.Character Glyphs at this point since that is the one that is dynamic in size, maybe add for rectangle later??? */
     public void setSize(Window window) throws OperationNotSupported {
         throw new OperationNotSupported();
+    }
+
+    /** Could return null if the command is never set */
+    public Command click() throws OperationNotSupported {
+        throw new OperationNotSupported();
+    }
+
+    /** Returns the Glyph which occupies the given coordinates
+     *  Glyph either returns itself or passes it along. */
+    public Glyph find(int x, int y) {
+        return null;
+    }
+
+    public void setCommand(Command cmd) {
+        command = cmd;
     }
 }

@@ -1,4 +1,5 @@
 package widget;
+import command.Command;
 import window.*;
 import glyph.Glyph;
 
@@ -11,6 +12,10 @@ public class GreenButton extends AbstractButton {
 
     public GreenButton(Window window, Glyph child) {
         super(window, child);
+    }
+
+    public GreenButton(Window window, Glyph child, Command cmd) {
+        super(window, child, cmd);
     }
 
     public void draw(Window window) {

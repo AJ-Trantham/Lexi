@@ -31,13 +31,18 @@ public class CompositeGlyph extends Glyph {
     }
 
     @Override
+    public Glyph find(int x, int y) {
+        for (Glyph g: children) {
+            if(g.intersects(x,y)) {
+                return g.find(x,y);
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void insert(Glyph glyph, int position) throws OperationNotSupported {
         glyph.parent = this;
         children.add(position, glyph);
-    }
-
-    /**Get's the first child in the list of children*/
-    public Glyph getFirstChild() {
-        return children.get(0);
     }
 }

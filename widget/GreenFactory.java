@@ -1,4 +1,5 @@
 package widget;
+import command.Command;
 import glyph.*;
 import window.*;
 /**
@@ -23,6 +24,11 @@ public class GreenFactory extends WidgetFactory {
     @Override
     public AbstractButton createButton(Window window, Glyph child) {
         return new GreenButton(window, child);
+    }
+
+    @Override
+    public AbstractButton createButton(Window window, Glyph child, Command cmd) {
+        return new GreenButton(window, child, cmd);
     }
 
     @Override

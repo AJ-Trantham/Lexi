@@ -1,5 +1,6 @@
 package widget;
 
+import command.Command;
 import glyph.Glyph;
 import window.*;
 
@@ -25,5 +26,6 @@ public abstract class WidgetFactory {
         return instance;
     }
     public abstract AbstractButton createButton(Window window, Glyph child);
+    public abstract AbstractButton createButton(Window window, Glyph child, Command cmd);
     public abstract AbstractLabel createLabel(Window window, Glyph child);
 }

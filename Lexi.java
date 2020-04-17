@@ -1,3 +1,4 @@
+import command.*;
 import glyph.*;
 import glyph.Character;
 import widget.*;
@@ -10,9 +11,18 @@ import window.*;
  */
 public class Lexi {
     public static void main(String[] args) {
+        // get Lexi Window
         ApplicationWindow window = new ApplicationWindow("Lexi");
-        ///ApplicationWindow window2 = new ApplicationWindow("test");
-        //Glyph testRow = new Row(window2, "This is a test. Do two windows appear?");
+
+        //init key map
+        KeyMap keyMap = new KeyMap();
+        keyMap.put('i', new IncrementFontCommand());
+        keyMap.put('d', new DecrementFontCommand());
+        keyMap.put('u', new UndoCommand());
+        keyMap.put('r', new RedoCommand());
+        window.setKeyMap(keyMap); // this keeps window from knowing about Glyph Commands
+
+        // build document
         Glyph doc = new Column(window); // Parent Glyph that holds all the others
         Glyph row = new Row(window);
         Glyph row2 = new Row(window);
@@ -23,8 +33,6 @@ public class Lexi {
             wf = WidgetFactory.getInstance();
             Glyph labelRow = new Row(window, "Label");
             Glyph label = wf.createLabel(window, labelRow);
-            Glyph buttonRow = new Row(window, "Button");
-            Glyph button = wf.createButton(window, buttonRow);
 
             letterCol.insert(label, 0);
             letterCol.insert(new Character('x'),1);
@@ -36,10 +44,30 @@ public class Lexi {
             row.insert(letterCol, 2);
             row.insert(new Character('b'), 3);
 
-            row2.insert(new Character('x'),0);
-            row2.insert(new Rectangle(15, 10),1);
-            row2.insert(button,2);
-            row2.insert(new Character('z'), 3);
+            // build last row with buttons
+            Glyph increment = new Row(window, " + ");
+            Glyph decrement = new Row(window, " - ");
+            Glyph fourteen = new Row(window, " 14 ");
+            Glyph tweenty = new Row(window, " 20 ");
+
+            Glyph buttonInc = wf.createButton(window, increment, new IncrementFontCommand());
+            //buttonInc.setCommand(new IncrementFontCommand());
+            Glyph buttonDec = wf.createButton(window, decrement, new DecrementFontCommand());
+            //buttonDec.setCommand(new DecrementFontCommand());
+            Glyph button14 = wf.createButton(window,fourteen);
+            button14.setCommand(new ChangeFontCommand(14));
+            Glyph button20 = wf.createButton(window, tweenty);
+            button20.setCommand(new ChangeFontCommand(20));
+
+            Glyph border1 = new BorderDecorator(window, buttonInc, 2);
+            Glyph border2 = new BorderDecorator(window, buttonDec, 2);
+            Glyph border3 = new BorderDecorator(window, button14, 2);
+            Glyph border4 = new BorderDecorator(window, button20, 2);
+
+            row2.insert(border1, 0);
+            row2.insert(border2,1);
+            row2.insert(border3, 2);
+            row2.insert(border4, 3);
 
             doc.insert(row,0);
             doc.insert(row2, 1);
@@ -49,5 +77,28 @@ public class Lexi {
         }
         //window2.setContents(testRow);
         window.setContents(bor);
+
+        //testCommands(window);
+
+    }
+
+    public static void testCommands(Window window) {
+        try {
+            Thread.sleep(6000);
+            //ChangeFontCommand cmd = new ChangeFontCommand(23);
+            //IncrementFontCommand cmd = new IncrementFontCommand();
+            DecrementFontCommand cmd = new DecrementFontCommand();
+            Command undo = new UndoCommand();
+            Command  redo = new RedoCommand();
+            cmd.execute(window);
+            CommandHistory.getInstance().add(cmd);
+            Thread.sleep(3000);
+            undo.execute(window);
+            Thread.sleep(3000);
+            redo.execute(window);
+            //cmd.unexecute(window);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

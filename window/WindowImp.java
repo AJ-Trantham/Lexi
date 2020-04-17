@@ -18,4 +18,8 @@ public interface WindowImp {
     void drawButton(int x, int y, int width, int height, String color);
     void drawLabel(int x, int y, int width, int height, String color);
 
+    int getFontSize();
+    void setFontSize(int size);
+
+    void repaint();
 }
