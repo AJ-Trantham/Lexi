@@ -6,8 +6,10 @@ import exceptions.*;
 import window.*;
 
 /**
+ *
+ * Composite Pattern (163): Component
+ * Chain of Responsibility (223): Handler - find() serves as handle request
  * Represents the type of object that can be displayed by Lexi.
- * glyph.Glyph participates as Component in Composite Pattern (163)
  * Default behavior is to throw an exception since leaf glyph.Glyph are more common and will not contain children.
  * Handler in ChainOfResponsibility
  */
@@ -76,18 +78,22 @@ public abstract class Glyph {
         throw new OperationNotSupported();
     }
 
-    /** Could return null if the command is never set */
+    /** Returns a glyphs command. Default: throws Exception, not all glyph have a command. */
     public Command click() throws OperationNotSupported {
         throw new OperationNotSupported();
     }
 
+    /** Sets the Command */
+    public void setCommand(Command cmd) {
+        command = cmd;
+    }
+
     /** Returns the Glyph which occupies the given coordinates
-     *  Glyph either returns itself or passes it along. */
+     *  Glyph either returns itself or passes it along.
+     *  HandleRequest in pattern
+     */
     public Glyph find(int x, int y) {
         return null;
     }
 
-    public void setCommand(Command cmd) {
-        command = cmd;
-    }
 }

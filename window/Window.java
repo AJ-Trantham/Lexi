@@ -7,6 +7,7 @@ import glyph.Glyph;
 /** Abstract Factory in the Abstract Factory Pattern (87)
  *  Singleton in Singleton pattern (127)
  *  Abstraction (left side) in Bridge(151)
+ *  Command (233): Invoker and Receiver
  *  Note: We can have multiple Window objects but we only want 1 window factory,
  *  similar to how we only wanted one look and feel
  */
@@ -95,7 +96,7 @@ public abstract class Window {
         this.keyMap = keyMap;
     }
 
-    public void key(char keyChar) {
+    void key(char keyChar) {
         Command cmd = keyMap.get(keyChar);
         if (cmd != null) {
             cmd.execute(this);
@@ -104,7 +105,7 @@ public abstract class Window {
     }
 
     /** Executes the command object of the glyph that was clicked on*/
-    public void click(int x, int y) {
+    void click(int x, int y) {
         Glyph clikedGlyph = root.find(x, y);
         if (clikedGlyph != null) {
             Command cmd = null;

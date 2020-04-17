@@ -7,6 +7,7 @@ import window.*;
 
 /**
  * Abstract Product in Abstract Factory pattern (87)
+ * Chain of Responsibility (223): ConcreteHandler
  */
 
 public abstract class AbstractButton extends Embellishment {
@@ -38,7 +39,7 @@ public abstract class AbstractButton extends Embellishment {
     }
 
     @Override
-    public Command click() throws OperationNotSupported {
+    public Command click() {
         return command;
     }
 }

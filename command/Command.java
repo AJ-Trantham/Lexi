@@ -3,7 +3,7 @@ import exceptions.OperationNotSupported;
 import window.*;
 
 /**
- * Prototype(119): Prototype
+ * Prototype(117): Prototype
  * Command(233): Command
  * */
 public abstract class Command {

@@ -4,7 +4,10 @@ import exceptions.OperationNotSupported;
 import window.Window;
 
 import java.util.Vector;
-//This needs to be a singelton -- could relax to have a separate cmd history for each window if we had multiple
+/**
+ * Command (233): Invoker and Receiver - for Undo/Redo Commands
+ * This needs to be a singleton -- could relax to have a separate cmd history for each window if we had multiple
+ */
 public class CommandHistory {
     private static CommandHistory commandHistory;
     private Vector<Command> commands;
@@ -39,14 +42,14 @@ public class CommandHistory {
         }
     }
 
-    public void undo(Window window) {
+    void undo(Window window) {
         if (presentIndex-1 >= 0) {
             presentIndex--;
             commands.get(presentIndex).unexecute(window);
         }
     }
 
-    public void redo(Window window) {
+    void redo(Window window) {
         if (presentIndex < commands.size()) {
             // unexecuted what has already been unexectuing, two wrongs make a right sort of deal
             commands.get(presentIndex).unexecute(window);

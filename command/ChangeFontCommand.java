@@ -2,7 +2,9 @@ package command;
 
 import window.Window;
 
-/** Command(233) Pattern: ConcreteCommand */
+/** Command(233) Pattern: ConcreteCommand
+ * Prototype (117): ConcretePrototype
+ */
 public class ChangeFontCommand extends Command {
 
     private int fontSize;

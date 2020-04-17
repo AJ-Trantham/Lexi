@@ -1,7 +1,10 @@
 package command;
 
 import window.Window;
-
+/**
+ * Command (233): ConcreteCommand
+ * Prototype (117): ConcretePrototype
+ */
 public class DecrementFontCommand extends Command {
     private ChangeFontCommand cfc;
 
