@@ -51,13 +51,9 @@ public class Lexi {
             Glyph tweenty = new Row(window, " 20 ");
 
             Glyph buttonInc = wf.createButton(window, increment, new IncrementFontCommand());
-            //buttonInc.setCommand(new IncrementFontCommand());
             Glyph buttonDec = wf.createButton(window, decrement, new DecrementFontCommand());
-            //buttonDec.setCommand(new DecrementFontCommand());
-            Glyph button14 = wf.createButton(window,fourteen);
-            button14.setCommand(new ChangeFontCommand(14));
-            Glyph button20 = wf.createButton(window, tweenty);
-            button20.setCommand(new ChangeFontCommand(20));
+            Glyph button14 = wf.createButton(window,fourteen, new ChangeFontCommand(14));
+            Glyph button20 = wf.createButton(window, tweenty, new ChangeFontCommand(20));
 
             Glyph border1 = new BorderDecorator(window, buttonInc, 2);
             Glyph border2 = new BorderDecorator(window, buttonDec, 2);
@@ -75,30 +71,6 @@ public class Lexi {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //window2.setContents(testRow);
         window.setContents(bor);
-
-        //testCommands(window);
-
-    }
-
-    public static void testCommands(Window window) {
-        try {
-            Thread.sleep(6000);
-            //ChangeFontCommand cmd = new ChangeFontCommand(23);
-            //IncrementFontCommand cmd = new IncrementFontCommand();
-            DecrementFontCommand cmd = new DecrementFontCommand();
-            Command undo = new UndoCommand();
-            Command  redo = new RedoCommand();
-            cmd.execute(window);
-            CommandHistory.getInstance().add(cmd);
-            Thread.sleep(3000);
-            undo.execute(window);
-            Thread.sleep(3000);
-            redo.execute(window);
-            //cmd.unexecute(window);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
