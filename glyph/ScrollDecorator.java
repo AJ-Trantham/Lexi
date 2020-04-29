@@ -15,7 +15,7 @@ public class ScrollDecorator extends Embellishment {
     public void draw(Window win) {
         win.addScrollBar(bounds.getX() + bounds.getWidth() - scrollWidth, bounds.getY(), scrollWidth, bounds.getHeight());
         // draws the 1st and only child
-        Iterator i = this.createIterator();
+        Iterator<Glyph> i = this.createIterator();
         i.currentItem().draw(win);
     }
 

@@ -15,7 +15,7 @@ import window.*;
  * Default behavior is to throw an exception since leaf glyph.Glyph are more common and will not contain children.
 
  */
-public abstract class Glyph implements IteratorNode{
+public abstract class Glyph implements IteratorNode<Glyph> {
     protected Glyph parent = null;
     protected Bounds bounds = new Bounds(0,0,0,0); // each glyph needs a bounds object, to store location
     protected Command command = null;
@@ -97,8 +97,8 @@ public abstract class Glyph implements IteratorNode{
      *  Default operation is to return a NullIterator for leaves.
      *  Intended to be overridden by non-leave glyphs.
      */
-    public Iterator createIterator() {
-        return new NullIterator();
+    public Iterator<Glyph> createIterator() {
+        return new NullIterator<Glyph>();
     }
 
     /**Each GLyph class needs to define this.

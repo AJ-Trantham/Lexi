@@ -8,30 +8,31 @@ import java.util.Stack;
 // FOr other cases T could be anything. Since T is Glyph our currentItem() should be able to return type T
 // Need to return type T or else this wouldn't be reusable.
 
+//Can I get rid of the ItoratorNode<T> the T part????
+
 /** Iterator (257): Concrete Iterator */
-public class PreOrderIterator<T> implements Iterator {
-    //private IteratorNode<? super T> root;
-    private Glyph root;
-    private Stack<Iterator> stack;
+public class PreOrderIterator<T extends IteratorNode<T>> implements Iterator {
+    private IteratorNode<T> root;
+    private Stack<Iterator<T>> stack;
 
 
-    public PreOrderIterator(Glyph root) {
+    public PreOrderIterator(IteratorNode<T> root) {
         this.root=root;
         stack = new Stack<>();
     }
 
     @Override
     public void init() {
-        Iterator i = root.createIterator();
+        Iterator<T> i = root.createIterator();
         i.init();
         stack.push(i);
     }
 
     @Override
     public void next() {
-        Iterator currentIterator = stack.peek();
-        Glyph topItem = currentIterator.currentItem();
-        Iterator i = topItem.createIterator();
+        Iterator<T> currentIterator = stack.peek();
+        T topItem = currentIterator.currentItem();
+        Iterator<T> i = topItem.createIterator();
         i.init();
         stack.push(i);
         // this will only start with a null iterator
@@ -49,8 +50,8 @@ public class PreOrderIterator<T> implements Iterator {
     }
 
     @Override
-    public Glyph currentItem() {
-        Iterator currentIterator = stack.peek();
+    public T currentItem() {
+        Iterator<T> currentIterator = stack.peek();
         return currentIterator.currentItem();
     }
 

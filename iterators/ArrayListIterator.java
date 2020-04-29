@@ -4,14 +4,14 @@ import glyph.Glyph;
 import java.util.ArrayList;
 
 /** Iterator (257): Concrete Iterator */
-public class ArrayListIterator<T> implements Iterator {
+public class ArrayListIterator<T> implements Iterator<T> {
 
     private int pos;
-    private ArrayList<Glyph> tArrayList;
+    private ArrayList<T> tArrayList;
 
-    public ArrayListIterator(ArrayList<Glyph> list) {
+    public ArrayListIterator(ArrayList<T> list) {
         this.tArrayList = list;
-        pos = 0; // inti can reset this if needed
+        this.init();
     }
 
     @Override
@@ -30,7 +30,7 @@ public class ArrayListIterator<T> implements Iterator {
     }
 
     @Override
-    public Glyph currentItem() {
+    public T currentItem() {
         return tArrayList.get(pos);
     }
 

@@ -19,7 +19,7 @@ public class WordCountCommand extends Command{
     @Override
     public void execute(Window window) {
         GlyphVisitor v=new WordCountVisitor();
-        Iterator i=new PreOrderIterator(window.getRoot());
+        PreOrderIterator<Glyph> i=new PreOrderIterator<Glyph>(window.getRoot());
         for (i.init(); !i.isDone(); i.next())
             i.currentItem().accept(v);
         System.out.println(v);

@@ -1,8 +1,7 @@
 package iterators;
 
-import glyph.Glyph;
 /**Iterator (257): Iterator */
-public interface Iterator {
+public interface Iterator<T> {
     /** Sets iterator to point to the first element in the list */
     void init();
 
@@ -13,5 +12,5 @@ public interface Iterator {
     boolean isDone();
 
     /** Returns the current item the iterator points to */
-    Glyph currentItem();
+    T currentItem();
 }

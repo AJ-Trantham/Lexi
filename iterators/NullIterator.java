@@ -1,9 +1,7 @@
 package iterators;
 
-import glyph.Glyph;
-
 /** Iterator (257): Concrete Iterator */
-public class NullIterator<T> implements Iterator {
+public class NullIterator<T> implements Iterator<T> {
 
     @Override
     public void init() {
@@ -21,7 +19,7 @@ public class NullIterator<T> implements Iterator {
     }
 
     @Override
-    public Glyph currentItem() {
+    public T currentItem() {
         return null;
     }
 }

@@ -28,7 +28,7 @@ public class SimpleCompositor implements Formatter {
         Cursor curs = new Cursor(parent.getBounds().getX(), parent.getBounds().getY());
 
         Glyph child = null;
-        Iterator i = parent.createIterator();
+        Iterator<Glyph> i = parent.createIterator();
         for(i.init(); !i.isDone(); i.next()) {
             child = i.currentItem();
             // ask (leaf) child to set size, based on window // - this only happens for the leaves that don't already know their w & h so just character currently

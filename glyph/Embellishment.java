@@ -22,14 +22,14 @@ public abstract class Embellishment extends Composition {
 
     @Override
     public void insert(Glyph glyph, int position) throws OperationNotSupported {
-        Iterator i = this.createIterator();
+        Iterator<Glyph> i = this.createIterator();
         i.init();
         i.currentItem().insert(glyph, position);
     }
 
     @Override
     public void remove(Glyph glyph) throws OperationNotSupported {
-        Iterator i = this.createIterator();
+        Iterator<Glyph> i = this.createIterator();
         i.init();
         i.currentItem().remove(glyph);
     }

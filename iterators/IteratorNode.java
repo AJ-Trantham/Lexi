@@ -1,5 +1,5 @@
 package iterators;
 
-public interface IteratorNode {
-    Iterator createIterator();
+public interface IteratorNode<T> {
+    Iterator<T> createIterator();
 }
