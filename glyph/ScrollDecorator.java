@@ -1,5 +1,6 @@
 package glyph;
 import exceptions.OperationNotSupported;
+import iterators.Iterator;
 import window.*;
 import formatting.*;
 
@@ -13,8 +14,9 @@ public class ScrollDecorator extends Embellishment {
 
     public void draw(Window win) {
         win.addScrollBar(bounds.getX() + bounds.getWidth() - scrollWidth, bounds.getY(), scrollWidth, bounds.getHeight());
-        // draws the child
-        try {this.getChild(0).draw(win); } catch (OperationNotSupported ignored) {}
+        // draws the 1st and only child
+        Iterator i = this.createIterator();
+        i.currentItem().draw(win);
     }
 
     @Override

@@ -119,4 +119,8 @@ public abstract class Window {
 
         }
     }
+
+    public Glyph getRoot() {
+        return root;
+    }
 }

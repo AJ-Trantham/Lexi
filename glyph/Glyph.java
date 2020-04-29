@@ -1,22 +1,25 @@
 package glyph;
-import command.ChangeFontCommand;
-import command.Command;
+import analysis.*;
+import command.*;
 import exceptions.*;
-
+import iterators.*;
 import window.*;
 
 /**
- *
- * Composite Pattern (163): Component
- * Chain of Responsibility (223): Handler - find() serves as handle request
+ * Patterns Employed:
+ *  Composite (163): Component
+ *  Chain of Responsibility (223): Handler - find() serves as handle request
+ *  Iterator (257): Aggregate
+ *  Visitor (332): Element - accept(GlyphVisitor v)
  * Represents the type of object that can be displayed by Lexi.
  * Default behavior is to throw an exception since leaf glyph.Glyph are more common and will not contain children.
- * Handler in ChainOfResponsibility
+
  */
-public abstract class Glyph {
+public abstract class Glyph implements IteratorNode{
     protected Glyph parent = null;
     protected Bounds bounds = new Bounds(0,0,0,0); // each glyph needs a bounds object, to store location
     protected Command command = null;
+    protected Iterator iterator = null;
 
     /** Each glyph.Glyph needs to know how to draw its self */
     public abstract void draw(Window window);
@@ -45,12 +48,6 @@ public abstract class Glyph {
     public void remove(Glyph glyph) throws OperationNotSupported {
         throw new OperationNotSupported();
     }
-
-    /** Accesses a child glyph */
-    public Glyph getChild(int position) throws OperationNotSupported {
-        throw new OperationNotSupported();
-    }
-
 
     /** Returns a reference to a glyph's parent glyph.Composition - used for formatting */
     private Glyph getParent() {
@@ -96,4 +93,22 @@ public abstract class Glyph {
         return null;
     }
 
+    /** Returns an iterator for a glyph, underlying FactoryMethod for Factory embedded in the Iterator Pattern.
+     *  Default operation is to return a NullIterator for leaves.
+     *  Intended to be overridden by non-leave glyphs.
+     */
+    public Iterator createIterator() {
+        return new NullIterator();
+    }
+
+    /**Each GLyph class needs to define this.
+     * Yes duplicate code, but it gives us differentiation
+     * amongst glyphs. */
+    public void accept(GlyphVisitor v) {
+        v.visit(this);
+    }
+
+    public boolean isLast(Glyph child) {
+        return false;
+    }
 }

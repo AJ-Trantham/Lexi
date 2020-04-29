@@ -1,9 +1,12 @@
 package glyph;
+import analysis.GlyphVisitor;
 import exceptions.OperationNotSupported;
 import window.*;
 import formatting.*;
 /** glyph.Row is a subclass of glyph.CompositeGlyph
- *  Composite in Composite Pattern (163) */
+ *  Composite in Composite Pattern (163)
+ *  Visitor(331): ConcreteElement
+ */
 public class Row extends Composition {
 
    public Row(Window window) {
@@ -28,5 +31,10 @@ public class Row extends Composition {
             curs.updateHeight(child.bounds.getHeight());
         }
         return curs;
+    }
+
+    @Override
+    public void accept(GlyphVisitor v) {
+        v.visit(this);
     }
 }

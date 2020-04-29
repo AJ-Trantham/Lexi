@@ -1,10 +1,12 @@
 package glyph;
+import analysis.GlyphVisitor;
 import exceptions.OperationNotSupported;
 import formatting.*;
 import window.*;
 
 /** glyph.Column is a subclass of glyph.CompositeGlyph
- * Composite in Composite Pattern (163) */
+ * Composite Pattern (163): Composite
+ * Visitor(331): ConcreteElement*/
 
 public class Column extends Composition {
 
@@ -29,5 +31,10 @@ public class Column extends Composition {
         curs.updateHeight(child.bounds.getHeight() + curs.getHeight());
         if (curs.getWidth() < child.bounds.getWidth()) { curs.updateWidth(child.bounds.getWidth());}
         return curs;
+    }
+
+    @Override
+    public void accept(GlyphVisitor v) {
+        v.visit(this);
     }
 }

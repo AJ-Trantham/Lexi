@@ -1,6 +1,8 @@
 import command.*;
 import glyph.*;
 import glyph.Character;
+import iterators.Iterator;
+import iterators.PreOrderIterator;
 import widget.*;
 import window.*;
 
@@ -20,17 +22,21 @@ public class Lexi {
         keyMap.put('d', new DecrementFontCommand());
         keyMap.put('u', new UndoCommand());
         keyMap.put('r', new RedoCommand());
+        keyMap.put('w', new WordCountCommand());
         window.setKeyMap(keyMap); // this keeps window from knowing about Glyph Commands
 
         // build document
         Glyph doc = new Column(window); // Parent Glyph that holds all the others
         Glyph row = new Row(window);
         Glyph row2 = new Row(window);
+        //Glyph letterRow = new Row(window, "abc def ghi,jkl");
+        //Glyph letterRow2 = new Row(window, "cat dog test");
         Glyph letterCol = new Column(window);
         WidgetFactory wf = null;
         Glyph bor = null;
         try {
             wf = WidgetFactory.getInstance();
+            Glyph words =  new Row(window, "This is a string of words to be used for testing.");
             Glyph labelRow = new Row(window, "Label");
             Glyph label = wf.createLabel(window, labelRow);
 
@@ -38,6 +44,7 @@ public class Lexi {
             letterCol.insert(new Character('x'),1);
             letterCol.insert(new Character('y'), 2);
             letterCol.insert(new Character('z'),3);
+            letterCol.insert(words,4);
 
             row.insert(new Character('a'),0);
             row.insert(new Rectangle(10,15), 1);
@@ -67,10 +74,17 @@ public class Lexi {
 
             doc.insert(row,0);
             doc.insert(row2, 1);
+            //doc.insert(letterCol, 2);
             bor = new BorderDecorator(window, doc, 5);
         } catch (Exception e) {
             e.printStackTrace();
         }
         window.setContents(bor);
+
+//        Iterator i = new PreOrderIterator<>(bor);
+//        //Iterator i = row.createIterator();
+//        for(i.init();!i.isDone();i.next()) {
+//            System.out.println(i.currentItem().toString());
+//        }
     }
 }
