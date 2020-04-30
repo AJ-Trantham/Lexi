@@ -10,7 +10,7 @@ import iterators.*;
  * Command (233): ConcreteCommand
  * Prototype (117): ConcretePrototype
  */
-public class WordCountCommand extends Command{
+public class WordCountCommand extends Command {
 
     public WordCountCommand() {
         super(false);

@@ -1,16 +1,13 @@
 package iterators;
 
-import glyph.Glyph;
 import java.util.Stack;
 
-// TODO: Solution having glyph implement a IteratorNode (Iterable) interface garentees we have a createIterator() method.
-// but it also lets us return type Glyph. So T in this case can be any Type that is a Glyph that implements the Iterable interface
-// FOr other cases T could be anything. Since T is Glyph our currentItem() should be able to return type T
-// Need to return type T or else this wouldn't be reusable.
-
-//Can I get rid of the ItoratorNode<T> the T part????
-
-/** Iterator (257): Concrete Iterator */
+/**
+ * Iterator (257): Concrete Iterator
+ * T extends IteratorNode puts a constraint on the Type of T.
+ * T can be any type that implements the IteratorNode interface to
+ * ensure we have a createIterator() method.
+ */
 public class PreOrderIterator<T extends IteratorNode<T>> implements Iterator {
     private IteratorNode<T> root;
     private Stack<Iterator<T>> stack;
@@ -54,5 +51,4 @@ public class PreOrderIterator<T extends IteratorNode<T>> implements Iterator {
         Iterator<T> currentIterator = stack.peek();
         return currentIterator.currentItem();
     }
-
 }
