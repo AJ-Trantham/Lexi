@@ -10,7 +10,7 @@ javac Lexi.java
     
  ## Description:
  Lexi is a graphical document editor, based on the case study presented
-             in Gamma's Design Patterns book.
+             in The Gang of Four's Design Patterns book.
    
 ### Design Patterns Used   
 ##### Structure: 
