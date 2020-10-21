@@ -7,8 +7,9 @@ To Run: javac Lexi.java
         export LEXILOOK=<Green or Red>
 	    export WINDOW=<Swing or Awt>
         java Lexi
-        
-Description: Lexi is a graphical document editor, based on the case study presented
+    
+ ## Description:
+ Lexi is a graphical document editor, based on the case study presented
              in Gamma's Design Patterns book.
              
 Structure: Lexi uses two design patterns. Composite (163) organizes the structure of Lexi's components - called Glyphs. These Glyphs
