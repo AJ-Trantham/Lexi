@@ -8,17 +8,17 @@ javac Lexi.java
 	    export WINDOW=<Swing or Awt>
         java Lexi
     
- ## Description:
+ ## Description
  Lexi is a graphical document editor, based on the case study presented
              in The Gang of Four's Design Patterns book.
    
 ### Design Patterns Used   
-##### Structure: 
+##### Structure 
 Lexi uses two design patterns. Composite (163) organizes the structure of Lexi's components - called Glyphs. These Glyphs
 are stored in a recursive composition herarchical structure. Both primitaive graphical elements (leaf glyphs) and 
 structural Glyphs called Composites (Glyphs with children) can be treated uniformally throughout the Lexi Project. 
 
-##### Formatting:
+##### Formatting
 Lexi also uses the Strategy pattern (315) for formatting. Although Lexi currently only has one formatter (strategy)
 implemented at this time, this pattern allows the addition of more formatting algorithms without altering any of Lexi's
 base code. 
